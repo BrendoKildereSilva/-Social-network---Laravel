@@ -1,0 +1,203 @@
+@import '../index.scss';
+@import './step-01.scss';
+// @import './step-02.scss';
+// @import './step-03.scss';
+
+
+[hidden] {
+    display: none !important;
+}
+
+main{
+    display: flex;
+}
+
+header{
+    margin-top: 10rem;
+}
+
+h1{
+    font-family: "Poppins", serif;
+    font-size: 6rem;
+    white-space: nowrap
+}
+
+span{
+    font-size: 1.7rem;
+    font-weight: 600;
+}
+
+span a{
+    color: $primary-color;
+}
+
+.bg-cloud{
+    display: none;
+    position: absolute;
+    bottom: -10px;
+
+    width: 100vw;
+    height: auto;
+}
+
+
+input{
+    height: 5rem;
+    font-size: 1.5rem;
+    width: 100%;
+    border-radius: 2.5rem;
+    border: 0.1rem solid #ccc;
+    text-indent: 1rem
+}
+
+input::placeholder{
+    color: #ccc;
+    font-weight: bold;
+    display: flex;
+}
+
+
+input:focus{
+    outline: 0.1rem solid $primary-color;
+}
+
+form div:nth-child(1) input:focus ~ label,
+form div:nth-child(2) input:focus ~ label,
+form div:nth-child(3) input:focus ~ label,
+
+form div:nth-child(1) input:valid ~ label,
+form div:nth-child(2) input:valid ~ label,
+form div:nth-child(3) input:valid ~ label
+{
+    color: $primary-color;
+    top: -1.3rem;
+    left: 1.5rem;
+    transition: ease-in-out;
+    font-size: 1.3rem;
+    transition: all 0.3s ease-in-out;
+}
+
+
+
+form div:nth-child(1),
+form div:nth-child(2),
+form div:nth-child(3),
+form div:nth-child(4)
+{
+    position: relative;    
+}
+
+form div:nth-child(1) label,
+form div:nth-child(2) label,
+form div:nth-child(3) label
+{
+    cursor: pointer;
+    color: #ccc;
+    font-weight: bold;
+    background: #fff;
+    position: absolute;
+    top: 1.4rem;
+    left: 1rem;
+    font-size: 1.7rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.button-next{
+    cursor: pointer;
+    height: 5rem;
+    background: $primary-color;
+    color: #fff;
+    font-size: 2rem;
+    border: 0px;
+    border-radius: 2rem;
+}
+
+.button-next:hover{
+    background: $primary-strong;
+}
+
+.container-error{
+    display: none;
+    flex-direction: column;
+    align-items: flex-start;
+    
+    margin: 0 auto;
+    padding: 2rem;
+    border: 1px solid $red;
+    width: 40rem;
+    min-height: 5rem;
+    border-radius: 2rem;
+}
+
+.container-error p{
+    color: $red;
+    font-size: 1.5rem;
+    position: relative;
+    padding: 0.5rem;
+    text-align: left;
+}
+
+.container-error p:not(:empty)::before{
+    content: "";
+    position: absolute;
+    top: 1.3rem;
+    left: -1rem;
+    display: inline-block;
+    border-radius: 50%;
+    background: $red;
+    width: 0.5rem !important;
+    height: 0.5rem !important;
+
+}
+
+
+.container-inputs{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 45em;
+}
+
+
+
+
+
+
+@media(max-width: 1050px){
+    html{
+        font-size: 70%;
+    }
+}
+
+@media(max-width: 600px){
+    html{
+        font-size: 40%;
+    }
+}
+
+
+@media(max-height: 800px){
+    html{
+        font-size: 60%;
+    }
+}
+
+@media(max-height: 600px){
+    html{
+        font-size: 35%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

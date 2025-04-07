@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="../../src/styles/auth/register/index.scss">
+  <title>Document</title>
+</head>
+<body>
+  <main>
+    
+    <div class="container-img">
+      <img class="img_ilustrate" src="../assets/img-ilustrate.png">      
+    </div>
+    
+    <form>
+      <div class="container-inputs">
+        <header>
+          <h1>Create account</h1>
+          <span>Already have an account? <a href="login.html"> Log in! </a></span>
+        </header>
+
+        <div class="step-01" id="step-01">
+
+          <div>
+            <input type="text" id="input-name" required>
+            <label for="input-name">Name</label>
+          </div>
+          
+          <div>
+            <input type="text" id="input-email" required>
+            <label for="input-email">E-mail</label>
+          </div>
+
+          <div>
+            <input type="password" id="input-password" required>
+            <label for="input-password">password</label>
+          </div>
+          
+          <div>
+            <input type="password" id="input-confirm-password" required>
+            <label for="input-confirm-password">confirm password</label>
+          </div>
+            
+          <button id="button-next-step-01" class="button-next">Next</button>         
+
+        </div>
+
+        <div  class="step-02" id="step-02" hidden="true">
+          <div>
+            <input type="text" id="input-ddi" required>
+            <label for="input-ddi">DDI</label>
+          </div>
+          
+          <div>
+            <input type="text" id="input-phone" required>
+            <label for="input-phone">Phone</label>
+          </div>
+
+          <div>
+            <input type="text" id="Date-of-Birth" required>
+            <label for="Date-of-Birth">Date of Birth</label>
+          </div>
+          
+          <div>
+            <input type="text" id="input-gender" required>
+            <label for="input-gender">Gender</label>
+          </div>
+            
+          <button id="button-next" class="button-next">Next</button>    
+        </div>
+
+        
+        <div  class="step-03" id="step-03" hidden="true">
+          <span>Add profile picture</span>
+          <label class="container-add-img" for="input-imagem"></label>
+          <input type="file" id="input-imagem">
+          <Button>Create account</Button>
+        </div>
+
+        <div class="container-error" id="container-error">
+            <p id="error-input-name"></p>
+            <p id="error-input-email"></p>
+            <p id="error-input-password"></p>
+            <p id="error-input-confirm-password"></p>
+        </div>
+      </div>
+
+
+    </form>
+  </main>
+
+</body>
+</html>
+
+
+<script type= "module" src="../../src/scripts/utilis/auth.js"></script>
+<script type= "module" src="../../src/scripts/utilis/configAxios.js"></script>
+<script type= "module" src="../../src/scripts/register/step01.js"></script>

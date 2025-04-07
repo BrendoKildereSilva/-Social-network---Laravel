@@ -1,0 +1,33 @@
+.step-03{
+    width: 45rem;
+    margin: 5rem auto;
+}
+input[type=file]{
+    display: none;
+}
+
+.step-03 label{
+    display: flex;
+    cursor: pointer;
+    height: 30rem;
+    width: 30rem;
+    border: 0.1rem dashed $primary-color;
+    border-radius: 2rem;
+    margin: 3rem auto;
+}
+
+.step-03 button{
+    cursor: pointer;
+    background: $primary-color;
+    color: #fff;
+    border: 0px;
+    border-radius: 5rem;
+    font-size: 2rem;
+    
+    width: 30rem;
+    height: 5rem;
+}
+
+.step-03 button:hover{
+    background: $primary-strong;
+}

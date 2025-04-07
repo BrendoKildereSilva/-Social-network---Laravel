@@ -1,0 +1,88 @@
+@import '../main.scss';
+
+.container-img{
+    width: 50vw;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.container-img img{
+    object-fit: contain;
+    animation: animateWidth 5s infinite linear;
+    margin-right: 50px;
+    width: 60%;
+}
+
+form{
+    width: 50vw;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    text-align: center;
+    margin-left: 50px;
+
+}
+
+
+@keyframes animateWidth {
+    0% { width: 55%; }
+    50% { width: 60%; }
+    100% { width: 55%; }
+}
+
+
+@media(max-width: 1080px) {
+    .container-img {
+        display: none;
+    }
+
+    form{
+        align-items: center;
+        justify-content: center;
+        margin: 0px;
+        width: 100vw;
+        height: 100vh;
+    }
+}
+
+
+@media(max-height: 800px){
+    .container-img{
+        display: flex;
+        width: 50vw;
+    }
+    
+    form{
+        width: 50vw;
+        height: 100vh;
+    
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: center;
+        margin-left: 50px;
+    
+    }
+}
+
+
+@media(max-width: 600px) {
+    .container-img {
+        display: none;
+    }
+
+    form{
+        align-items: center;
+        justify-content: flex-start;
+        margin: 0px;
+        width: 100vw;
+        height: 100vh;
+    
+    }
+}
