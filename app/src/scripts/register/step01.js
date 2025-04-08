@@ -2,10 +2,17 @@ import { ButtonNextStep01 } from './index'
 import { ErrorMesage } from './ErrorMesage';
 import axios from 'axios'
 
-const input_name_user = document.getElementById('input-name')
+const input_name = document.getElementById('input-name')
 const input_email = document.getElementById('input-email')
 const input_password = document.getElementById('input-password')
 const input_confirm_password = document.getElementById('input-confirm-password')
+//
+const label_name = document.getElementById('label_name')
+const label_email = document.getElementById('label_email')
+const label_password = document.getElementById('label_password')
+const label_confirm_password = document.getElementById('label_confirm_password')
+
+
 const buttonNextStep01 = document.getElementById('button-next-step-01')
 
 const StatusInputs = {
@@ -14,58 +21,75 @@ const StatusInputs = {
     password: false,
     confirm_password: false,
 }
-
-
-input_name_user.addEventListener('keyup', () => {
-    ValidingInputName();
-})
-
-input_email.addEventListener('keyup', () => { 
-    ValidingInputEmail();
-})
-
-input_password.addEventListener('keyup', () => {    
-    ValidingInputPassword()
-    ValidingInputConfirmSenha();
-})
-
-input_confirm_password.addEventListener('keyup', () => {
-    ValidingInputConfirmSenha();
-})
  
+function StyleValueFalse(input){
+
+    input_name.removeAttribute('class')
+    label_name.removeAttribute('class')
+    //
+    input_email.removeAttribute('class')
+    label_email.removeAttribute('class')
+    //
+    input_password.removeAttribute('class')
+    label_password.removeAttribute('class')
+    //
+    input_confirm_password.removeAttribute('class')
+    label_confirm_password.removeAttribute('class')
+
+
+    if(input === 'name'){
+        input_name.setAttribute('class', 'i-false')
+        label_name.setAttribute('class', 'l-false')
+    }
+
+    if(input == 'email'){
+        input_email.setAttribute('class', 'i-false')
+        label_email.setAttribute('class', 'l-false')
+    }
+    
+    if(input == 'password'){
+        input_password .setAttribute('class', 'i-false')
+        label_password.setAttribute('class', 'l-false')
+    }
+
+    if(input == 'confirm_password'){
+        input_confirm_password.setAttribute('class', 'i-false')
+        label_confirm_password.setAttribute('class', 'l-false')
+    }
+
+    
+   
+}
 
 function ValidingInputName(){
-    const regex = /[^a-zA-Z0-9\s]/
+    StyleValueFalse('name')
+    const regex = /^[a-z-A-Z-0-9]+$/g  
 
-    if(!input_name_user.value){
+
+    if(!input_name.value){
         ErrorMesage('name', 'Fill in the <b> name </b>field..');
         StatusInputs.name = false
     }
-    else if(input_name_user.value.length > 15){
+    else if(input_name.value.length > 15){
         ErrorMesage('name', 'Maximum 15 characters in the <b> name </b> field.');
         StatusInputs.name = false
     }
-    else if(regex.test(input_name_user.value)){
+    else if(!regex.test(input_name.value)){
         ErrorMesage('name', 'Only characters from A to Z and numbers from 0 to 9 in the <b> name </b> field.');
         StatusInputs.name = false
     }
     else
     {
+        StyleValueFalse()
         ErrorMesage('name', '');
         StatusInputs.name = true
     }
 }
 
 async  function ValidingInputEmail(){
-    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-    var checkEmail = ''
+    StyleValueFalse('email')
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/    
     
-    var form = new FormData();
-    form.append('email', input_email.value);
-    await axios.post('/check-email', form).then(Response => { 
-        checkEmail = Response.data
-    })
-
     if(!input_email.value){
         ErrorMesage('email', 'Fill in the <b> email </b>field.');
         StatusInputs.email = false
@@ -74,19 +98,22 @@ async  function ValidingInputEmail(){
         ErrorMesage('email', 'Invalid <b>email</b>');
         StatusInputs.email = false
     }
-    else if(checkEmail === 'email is in use')
+    else if(input_email.value === 'brendokildere@gmail.com')
     {   
         ErrorMesage('email', 'This <b>email</b> is already in use.');
         StatusInputs.email = false
     }
     else
     { 
+        StyleValueFalse('')
         ErrorMesage('email', '');
         StatusInputs.email = true
     }
 }
 
 function ValidingInputPassword(){
+    StyleValueFalse('password')
+
     var RegexUppeCase = /[A-Z]/
     var RegexlowerCase = /[a-z]/
     var RegexNumber = /[0-9]/
@@ -117,32 +144,40 @@ function ValidingInputPassword(){
         StatusInputs.password = false 
     }
     else{
+        StyleValueFalse('')
         ErrorMesage('password', '');
         StatusInputs.password = true
     }
 }
 
-function ValidingInputConfirmSenha(){
+function ValidingInputConfirmPassword(){
+    StyleValueFalse('confirm_password')
+
     if(!input_confirm_password.value){
-        ErrorMesage('confirm_senha', 'Fill in the <b>confirm password</b>field..');
+        ErrorMesage('confirm_password', 'Fill in the <b>confirm password</b>field..');
         StatusInputs.confirm_password = false
     }
     else if(input_confirm_password.value != input_password.value )
     {
-        ErrorMesage('confirm_senha', 'The passwords do not match..');
+        ErrorMesage('confirm_password', 'The passwords do not match..');
         StatusInputs.confirm_password = false
     }
     else
     {
-        ErrorMesage('confirm_senha', '');
+        StyleValueFalse('')
+        ErrorMesage('confirm_password', '');
         StatusInputs.confirm_password = true
     }
 }
 
 
-
 buttonNextStep01.addEventListener('click', (e) => {
     e.preventDefault();
+    ValidingInputName();
+    ValidingInputEmail();
+    ValidingInputPassword();
+    ValidingInputConfirmPassword();
+
     const allTrue = Object.values(StatusInputs).every(status => status === true);
 
     if(allTrue){
@@ -150,10 +185,23 @@ buttonNextStep01.addEventListener('click', (e) => {
     }
     else
     {
-        ValidingInputName();
-        ValidingInputEmail();
-        ValidingInputPassword();
-        ValidingInputConfirmSenha();
+        if(StatusInputs['name'] === false){
+            ValidingInputName();
+        }
+        else if((StatusInputs['email'] === false))
+        {
+            ValidingInputEmail();
+        }
+        else if((StatusInputs['password'] === false))
+        {
+            ValidingInputPassword();
+        }
+
+        else if((StatusInputs['confirm_password'] === false))
+        {
+            ValidingInputConfirmPassword();
+        }
+        
     }
     
 

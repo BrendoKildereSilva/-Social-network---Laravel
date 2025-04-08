@@ -1,7 +1,7 @@
 @import '../index.scss';
 @import './step-01.scss';
-// @import './step-02.scss';
-// @import './step-03.scss';
+@import './step-02.scss';
+@import './step-03.scss';
 
 
 [hidden] {
@@ -31,14 +31,6 @@ span a{
     color: $primary-color;
 }
 
-.bg-cloud{
-    display: none;
-    position: absolute;
-    bottom: -10px;
-
-    width: 100vw;
-    height: auto;
-}
 
 
 input{
@@ -47,29 +39,19 @@ input{
     width: 100%;
     border-radius: 2.5rem;
     border: 0.1rem solid #ccc;
-    text-indent: 1rem
-}
-
-input::placeholder{
-    color: #ccc;
-    font-weight: bold;
-    display: flex;
+    outline: none;
+    text-indent: 1rem;
 }
 
 
-input:focus{
-    outline: 0.1rem solid $primary-color;
-}
 
-form div:nth-child(1) input:focus ~ label,
-form div:nth-child(2) input:focus ~ label,
-form div:nth-child(3) input:focus ~ label,
+    
 
-form div:nth-child(1) input:valid ~ label,
-form div:nth-child(2) input:valid ~ label,
-form div:nth-child(3) input:valid ~ label
+.step-01 input:focus ~ label,
+.step-01 input:valid ~ label,
+.step-02 input:focus ~ label,
+.step-02 input:valid ~ label
 {
-    color: $primary-color;
     top: -1.3rem;
     left: 1.5rem;
     transition: ease-in-out;
@@ -78,22 +60,17 @@ form div:nth-child(3) input:valid ~ label
 }
 
 
-
-form div:nth-child(1),
-form div:nth-child(2),
-form div:nth-child(3),
-form div:nth-child(4)
+.step-01 div,
+.step-02 div
 {
     position: relative;    
 }
 
-form div:nth-child(1) label,
-form div:nth-child(2) label,
-form div:nth-child(3) label
+label
 {
     cursor: pointer;
     color: #ccc;
-    font-weight: bold;
+    font-weight: 400;
     background: #fff;
     position: absolute;
     top: 1.4rem;
@@ -116,41 +93,6 @@ form div:nth-child(3) label
     background: $primary-strong;
 }
 
-.container-error{
-    display: none;
-    flex-direction: column;
-    align-items: flex-start;
-    
-    margin: 0 auto;
-    padding: 2rem;
-    border: 1px solid $red;
-    width: 40rem;
-    min-height: 5rem;
-    border-radius: 2rem;
-}
-
-.container-error p{
-    color: $red;
-    font-size: 1.5rem;
-    position: relative;
-    padding: 0.5rem;
-    text-align: left;
-}
-
-.container-error p:not(:empty)::before{
-    content: "";
-    position: absolute;
-    top: 1.3rem;
-    left: -1rem;
-    display: inline-block;
-    border-radius: 50%;
-    background: $red;
-    width: 0.5rem !important;
-    height: 0.5rem !important;
-
-}
-
-
 .container-inputs{
     display: flex;
     flex-direction: column;
@@ -159,34 +101,14 @@ form div:nth-child(3) label
 }
 
 
-
-
-
-
-@media(max-width: 1050px){
-    html{
-        font-size: 70%;
-    }
+.i-false{
+    border: 0.1rem solid $primary-color;
 }
 
-@media(max-width: 600px){
-    html{
-        font-size: 40%;
-    }
+.l-false{
+    color: $primary-color;
 }
 
-
-@media(max-height: 800px){
-    html{
-        font-size: 60%;
-    }
-}
-
-@media(max-height: 600px){
-    html{
-        font-size: 35%;
-    }
-}
 
 
 
