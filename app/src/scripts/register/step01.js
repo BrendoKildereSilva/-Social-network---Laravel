@@ -88,18 +88,33 @@ function ValidingInputName(){
 
 async  function ValidingInputEmail(){
     StyleValueFalse('email')
-    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/    
+    var email = input_email.value
+    var email_available = false
+    const form = new FormData();
+    const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+
+    await axios.post('/validate-email', { 'email': email }).then(Reponse => {3
+            console.log(Reponse.data.mensagem)
+            if(Reponse.data.mensagem === 'Email is already in use'){
+                email_available = false
+            }
+            else if(Reponse.data.mensagem === 'Email available')
+            {
+                email_available = true
+            }
+    })
     
-    if(!input_email.value){
+    if(!email){
         ErrorMesage('email', 'Fill in the <b> email </b>field.');
         StatusInputs.email = false
     }
-    else if(!regex.test(input_email.value)){
+    else if(!regex.test(email)){
         ErrorMesage('email', 'Invalid <b>email</b>');
         StatusInputs.email = false
     }
-    else if(input_email.value === 'brendokildere@gmail.com')
+    else if(!email_available)
     {   
+        console.log()
         ErrorMesage('email', 'This <b>email</b> is already in use.');
         StatusInputs.email = false
     }
@@ -170,11 +185,10 @@ function ValidingInputConfirmPassword(){
     }
 }
 
-
-buttonNextStep01.addEventListener('click', (e) => {
+buttonNextStep01.addEventListener('click', async (e) => {
     e.preventDefault();
     ValidingInputName();
-    ValidingInputEmail();
+    await ValidingInputEmail();
     ValidingInputPassword();
     ValidingInputConfirmPassword();
 
