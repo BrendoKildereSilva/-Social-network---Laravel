@@ -1,4 +1,4 @@
-## Sistema de login - **`LARAVEL`** **`SQL`**  **`HTML - CSS - JAVASCRIPT`**  **`UX & UI`**
+## Social Network  - **`LARAVEL`** **`SQL`**  **`HTML - CSS - JAVASCRIPT`**  **`UX & UI`**
 
 The registration interface of the social network was developed with a focus on security, efficiency, and a smooth user experience. It includes: 
 <br>-**Complete field validation:** all user inputs, such as name, email, and password, are validated in real-time to ensure correct formatting before submission.
