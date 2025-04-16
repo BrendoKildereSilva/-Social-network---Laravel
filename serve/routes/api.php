@@ -10,6 +10,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/', [UserController::class, 'index' ]);
 Route::post('/validate-email', [UserController::class, 'ValidateEmail' ]);
+Route::post('/validate-phone-number', [UserController::class, 'ValidatePhoneNumber' ]);
 
 
 

@@ -17,7 +17,8 @@ class UsersSeeder extends Seeder
             'name'  => 'Brendo',
             'email' => 'Brendo@gmail.com',
             'password' => bcsqrt('123'),
-            'role' => 'admin'
+            'role' => 'admin',
+            'phone_number' => "+5592996059860"
         ]);
     }
 }

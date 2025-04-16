@@ -22,7 +22,7 @@ class UserController extends Controller
 
         if($consultation->count() > 0){
             return response()->json([
-                'status' => 'success',
+                'status' => 'error',
                 'mensagem' => 'Email is already in use'
             ]);
         }
@@ -31,6 +31,29 @@ class UserController extends Controller
             return response()->json([
                 'status' => 'success',
                 'mensagem' => 'Email available'
+            ]);
+        }
+    }
+
+    public function ValidatePhoneNumber(Request $request){
+        $request->validate([
+            'phone' => 'required|string',
+        ]);
+
+        $phone = htmlentities($request->input('phone'));
+        $consultation = User::where('phone_number', $phone)->get();
+
+        if($consultation->count() > 0){
+            return response()->json([
+                'status' => 'error',
+                'mensagem' => 'Phone is already in use'
+            ]);
+        }
+        else
+        {
+            return response()->json([
+                'status' => 'success',
+                'mensagem' => 'Phone available'
             ]);
         }
         
