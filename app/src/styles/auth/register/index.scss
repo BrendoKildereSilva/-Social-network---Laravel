@@ -79,7 +79,7 @@ label
     transition: all 0.3s ease-in-out;
 }
 
-.button-next{
+.button-next, .button-back{
     cursor: pointer;
     height: 5rem;
     background: $primary-color;
@@ -89,7 +89,9 @@ label
     border-radius: 2rem;
 }
 
-.button-next:hover{
+.button-next:hover,
+.button-back:hover
+{
     background: $primary-strong;
 }
 

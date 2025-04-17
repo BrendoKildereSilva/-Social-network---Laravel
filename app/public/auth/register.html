@@ -23,7 +23,7 @@
           <span>Already have an account? <a href="login.html"> Log in! </a></span>
         </header>
 
-        <div class="step-01" id="step-01" >
+        <div class="step-01" id="step-01" hidden="true">
 
           <div>
             <input type="text" id="input-name"  value="brendo" required>
@@ -49,7 +49,7 @@
 
         </div>
 
-        <div  class="step-02" id="step-02" hidden="true">
+        <div  class="step-02" id="step-02" >
           <div>
             <input type="text" id="input-ddi" required>
             <label for="input-ddi">DDI</label>
@@ -66,11 +66,17 @@
           </div>
           
           <div>
-            <input type="text" id="input-gender" required>
+            <select name="" id="input-gender" required>
+              <option value=""></option>
+              <option value="">Male</option>
+              <option value="">Famale</option>
+              <option value="">Orthers</option>
+            </select>
             <label for="input-gender">Gender</label>
           </div>
             
-          <button id="button-next" class="button-next">Next</button>    
+          <button id="button-back" class="button-back">Back</button>    
+          <button id="button-next" class="button-next">Next</button>     
         </div>
 
         
@@ -97,3 +103,4 @@
 <script type= "module" src="../../src/scripts/utilis/auth.js"></script>
 <script type= "module" src="../../src/scripts/utilis/configAxios.js"></script>
 <script type= "module" src="../../src/scripts/register/step01.js"></script>
+<script type= "module" src="../../src/scripts/register/step02.js"></script>

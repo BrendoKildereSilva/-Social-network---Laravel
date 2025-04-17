@@ -17,6 +17,13 @@ export function ButtonNextStep01(){
     container_step_03.setAttribute('hidden', 'true')
 }
 
+export function ButtonBackStep02(){
+    Dados.StatusSteps.step01 = true
+    container_step_01.removeAttribute('hidden', 'true')
+    container_step_02.setAttribute('hidden', 'true')
+    container_step_03.setAttribute('hidden', 'true')
+}
+
 
 
 

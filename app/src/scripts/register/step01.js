@@ -1,17 +1,12 @@
 import { ButtonNextStep01 } from './index'
 import { ErrorMesage } from './ErrorMesage';
+import { StyleValueFalse } from './style_inputs_false';
 import axios from 'axios'
 
 const input_name = document.getElementById('input-name')
 const input_email = document.getElementById('input-email')
 const input_password = document.getElementById('input-password')
 const input_confirm_password = document.getElementById('input-confirm-password')
-//
-const label_name = document.getElementById('label_name')
-const label_email = document.getElementById('label_email')
-const label_password = document.getElementById('label_password')
-const label_confirm_password = document.getElementById('label_confirm_password')
-
 
 const buttonNextStep01 = document.getElementById('button-next-step-01')
 
@@ -22,73 +17,36 @@ const StatusInputs = {
     confirm_password: false,
 }
  
-function StyleValueFalse(input){
 
-    input_name.removeAttribute('class')
-    label_name.removeAttribute('class')
-    //
-    input_email.removeAttribute('class')
-    label_email.removeAttribute('class')
-    //
-    input_password.removeAttribute('class')
-    label_password.removeAttribute('class')
-    //
-    input_confirm_password.removeAttribute('class')
-    label_confirm_password.removeAttribute('class')
-
-
-    if(input === 'name'){
-        input_name.setAttribute('class', 'i-false')
-        label_name.setAttribute('class', 'l-false')
-    }
-
-    if(input == 'email'){
-        input_email.setAttribute('class', 'i-false')
-        label_email.setAttribute('class', 'l-false')
-    }
-    
-    if(input == 'password'){
-        input_password .setAttribute('class', 'i-false')
-        label_password.setAttribute('class', 'l-false')
-    }
-
-    if(input == 'confirm_password'){
-        input_confirm_password.setAttribute('class', 'i-false')
-        label_confirm_password.setAttribute('class', 'l-false')
-    }
-
-    
-   
-}
 
 function ValidingInputName(){
     StyleValueFalse('name')
+    var name = input_name.value.trim()
     const regex = /^[a-z-A-Z-0-9]+$/g  
 
 
-    if(!input_name.value){
-        ErrorMesage('name', 'Fill in the <b> name </b>field..');
+    if(!name){
+        ErrorMesage('Fill in the name field..');
         StatusInputs.name = false
     }
-    else if(input_name.value.length > 15){
-        ErrorMesage('name', 'Maximum 15 characters in the <b> name </b> field.');
+    else if(name.length > 15){
+        ErrorMesage('Maximum 15 characters in the name field.');
         StatusInputs.name = false
     }
-    else if(!regex.test(input_name.value)){
-        ErrorMesage('name', 'Only characters from A to Z and numbers from 0 to 9 in the <b> name </b> field.');
+    else if(!regex.test(name)){
+        ErrorMesage('Only characters from A to Z and numbers from 0 to 9 in the name field.');
         StatusInputs.name = false
     }
     else
     {
         StyleValueFalse()
-        ErrorMesage('name', '');
+        ErrorMesage();
         StatusInputs.name = true
     }
 }
 
 async  function ValidingInputEmail(){
-    StyleValueFalse('email')
-    var email = input_email.value
+    var email = input_email.value.trim()
     var email_available = false
     const form = new FormData();
     const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
@@ -103,30 +61,33 @@ async  function ValidingInputEmail(){
                 email_available = true
             }
     })
+
+    StyleValueFalse('email')
     
     if(!email){
-        ErrorMesage('email', 'Fill in the <b> email </b>field.');
+        ErrorMesage('Fill in the email field.');
         StatusInputs.email = false
     }
     else if(!regex.test(email)){
-        ErrorMesage('email', 'Invalid <b>email</b>');
+        ErrorMesage('Invalid email');
         StatusInputs.email = false
     }
     else if(!email_available)
     {   
         console.log()
-        ErrorMesage('email', 'This <b>email</b> is already in use.');
+        ErrorMesage('This email is already in use.');
         StatusInputs.email = false
     }
     else
     { 
-        StyleValueFalse('')
-        ErrorMesage('email', '');
+        StyleValueFalse();
+        ErrorMesage();
         StatusInputs.email = true
     }
 }
 
 function ValidingInputPassword(){
+    var password = input_password.value.trim()
     StyleValueFalse('password')
 
     var RegexUppeCase = /[A-Z]/
@@ -134,33 +95,33 @@ function ValidingInputPassword(){
     var RegexNumber = /[0-9]/
     var Regexspecial = /[^a-zA-Z0-9\s]/
 
-    if(!input_password.value){
-        ErrorMesage('password', 'Fill in the <b>password</b>field..');
+    if(!password){
+        ErrorMesage('Fill in the password field..');
         StatusInputs.password = false
     }
-    else if(input_password.value.length < 6){
-        ErrorMesage('password', 'Enter at least 6 characters in the <b>password</b>field.');
+    else if(password.length < 6){
+        ErrorMesage('Enter at least 6 characters in the password field.');
         StatusInputs.password = false
     }
-    else if(!RegexUppeCase.test(input_password.value)){
-        ErrorMesage('password', 'Enter at least one capital letter [A-Z] in the <b>password</b> field.');
+    else if(!RegexUppeCase.test(password)){
+        ErrorMesage('Enter at least one capital letter [A-Z] in the password field.');
         StatusInputs.password = false
     }  
-    else if(!RegexlowerCase.test(input_password.value)){
-        ErrorMesage('password', 'Enter at least one lowercase letter [a-z] in the  <br>password</b>field');
+    else if(!RegexlowerCase.test(password)){
+        ErrorMesage('least one lowercase letter [a-z] in the password field');
         StatusInputs.password = false
     }
-    else if(!RegexNumber.test(input_password.value)){
-        ErrorMesage('password', 'Enter at least one lowercase letter [0-9] in the <b>password</b> field');
+    else if(!RegexNumber.test(password)){
+        ErrorMesage('Enter at least one lowercase letter [0-9] in the password field');
         StatusInputs.password = false
     }
-    else if(!Regexspecial.test(input_password.value)){
-        ErrorMesage('password', 'Enter at least one special characters letter [@#$%&*] in the <b>password</b> field');
+    else if(!Regexspecial.test(password)){
+        ErrorMesage('Enter at least one special characters letter [@#$%&*] in the password field');
         StatusInputs.password = false 
     }
     else{
-        StyleValueFalse('')
-        ErrorMesage('password', '');
+        StyleValueFalse()
+        ErrorMesage();
         StatusInputs.password = true
     }
 }
@@ -169,18 +130,18 @@ function ValidingInputConfirmPassword(){
     StyleValueFalse('confirm_password')
 
     if(!input_confirm_password.value){
-        ErrorMesage('confirm_password', 'Fill in the <b>confirm password</b>field..');
+        ErrorMesage('Fill in the confirm password field..');
         StatusInputs.confirm_password = false
     }
     else if(input_confirm_password.value != input_password.value )
     {
-        ErrorMesage('confirm_password', 'The passwords do not match..');
+        ErrorMesage('The passwords do not match..');
         StatusInputs.confirm_password = false
     }
     else
     {
-        StyleValueFalse('')
-        ErrorMesage('confirm_password', '');
+        StyleValueFalse()
+        ErrorMesage();
         StatusInputs.confirm_password = true
     }
 }
@@ -188,9 +149,9 @@ function ValidingInputConfirmPassword(){
 buttonNextStep01.addEventListener('click', async (e) => {
     e.preventDefault();
     ValidingInputName();
-    await ValidingInputEmail();
     ValidingInputPassword();
     ValidingInputConfirmPassword();
+    await ValidingInputEmail(); 
 
     const allTrue = Object.values(StatusInputs).every(status => status === true);
 
