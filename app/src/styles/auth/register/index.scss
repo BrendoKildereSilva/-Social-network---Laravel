@@ -33,7 +33,7 @@ span a{
 
 
 
-input{
+input, select{
     height: 5rem;
     font-size: 1.5rem;
     width: 100%;
@@ -43,14 +43,24 @@ input{
     text-indent: 1rem;
 }
 
+select{
+    cursor: pointer;
+    appearance: none; 
+}
+
+
+
 
 
     
 
 .step-01 input:focus ~ label,
 .step-01 input:valid ~ label,
+
 .step-02 input:focus ~ label,
-.step-02 input:valid ~ label
+.step-02 input:valid ~ label,
+.step-02 select:valid ~ label,
+.step-02 select:focus ~ label
 {
     top: -1.3rem;
     left: 1.5rem;
